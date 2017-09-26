@@ -3,8 +3,10 @@ from flask import Flask
 from flask import render_template
 from flask import request
 
+
 app = Flask(__name__)
-DB = DBHelper
+DB = DBHelper()
+
 
 @app.route("/")
 def home():
@@ -15,6 +17,7 @@ def home():
         data = None
     return render_template("home.html", data=data)
 
+
 @app.route("/add", methods=["POST"])
 def add():
     try:
@@ -24,6 +27,7 @@ def add():
         print e
     return home()
 
+
 @app.route("/clear")
 def clear():
     try:
@@ -31,7 +35,6 @@ def clear():
     except Exception as e:
         print e
     return home()
-
 
 if __name__ == '__main__':
     app.run(port=5000, debug=True)
